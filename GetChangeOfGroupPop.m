@@ -1,6 +1,7 @@
 function [dg1,dg2,dg3,dg0] = GetChangeOfGroupPop(group1,group2,group3,group0,I,N)
 
 
+% This function returns the compartment size changes over a single day. Used in a day loop to update compartment counts
 
 % SEIAR Model SDSU Student Popualation Framework
 %-----------------------------------
@@ -67,10 +68,9 @@ Ac=group1(4)+group2(4);
 Io=group3(3)+group0(3);
 Ao=group3(4)+group0(4);
 
-Nc = floor(sum(group1) + sum(group2));
+Nc = floor(sum(group1) + sum(group2)); 
 No = floor(sum(group3) + sum(group0));
 
-    
     dg1(1) = -group1(1) * ( (bc_ic*Ic + bc_ac*Ac)/Nc + (bc_io*Io + bc_ao*Ao)/No + bc*I/N);
     dg1(2) = abs(dg1(1)) - s*group1(2);
     dg1(3) =   (p)*s*group1(2) - u*group1(3);
